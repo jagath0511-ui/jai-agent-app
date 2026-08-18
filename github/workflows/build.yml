@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Source Code
+      - name: Checkout Source
         uses: actions/checkout@v4
 
       - name: Set up Java JDK 17
@@ -18,10 +18,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Android SDK & Build APK
-        run: |
-          chmod +x ./gradlew || true
-          ./gradlew assembleDebug || gradle assembleDebug
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build Debug APK
+        run: gradle :app:assembleDebug --stacktrace
 
       - name: Upload Finished APK
         uses: actions/upload-artifact@v4
