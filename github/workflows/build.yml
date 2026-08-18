@@ -33,3 +33,4 @@ jobs:
           name: JAI-Debug-App
           path: app/build/outputs/apk/debug/*.apk
           
+          
